@@ -1,0 +1,40 @@
+body{
+    width: 100vw;
+    height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.color-box{
+    width: 80vw;
+    height: 20vh;
+    margin: 5vh 0;
+}
+
+.box-form{
+    width: 80vw;
+    height: 60vh;
+
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.child-form{
+    width: inherit;
+    height: 13vh;
+}
+
+.box-input{
+    width: inherit;
+}
+
+.box-label{
+    text-align: center;
+}
