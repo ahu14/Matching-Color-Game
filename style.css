@@ -11,15 +11,19 @@ body{
     flex-wrap: wrap;
 }
 
-.color-box{
+.box{
     width: 80vw;
-    height: 20vh;
-    margin: 5vh 0;
+    height: 30vh;
+
+    display: grid;
+    grid-template-rows: repeat(2, 15vh);
+
+    margin: 7vh 0;
 }
 
 .box-form{
     width: 80vw;
-    height: 60vh;
+    height: 40vh;
 
     display: flex;
     align-content: flex-start;
