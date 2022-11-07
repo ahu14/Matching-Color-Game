@@ -6,35 +6,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Document</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="./css/index.css">
     </head>
     
     <body>
-        <div class="box">
-            <div class="color-box"></div>
-            <div class="color-box"></div>
-        </div>
-
-        <form class="box-form" oninput="slider(event)">
-            <div class="child-form">
-                <input type="range" id="red" name="red"
-                class="box-input" value="0" min="0" max="255">
-                <p>Red : <label id="red" class="box-label" for="red"></label></p>
+        <main class="main-box">
+            <div class="home-box">
+                <h1 id="title-box">MATCH THE COLOR GAME</h1>
+                <button class="btn-box" onclick="startGame()">Start</button>
             </div>
 
-            <div class="child-form">
-                <input type="range" id="green" name="green" 
-                class="box-input" value="0" min="0" max="255">
-                <p>Green : <label id="green" class="box-label" for="green"></label></p>
-            </div>
+            <form class="form-box" onsubmit="sendData(event)">
+                <h1><label for="difficulty">Set difficulty :</label></h1>
 
-            <div class="child-form">
-                <input type="range" id="blue" name="blue" 
-                class="box-input" value="0" min="0" max="255">
-                <p>Blue : <label id="blue" class="box-label" for="blue"></label></p>
-            </div>
-        </form>
+                <select name="difficulty" id="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
 
-        <script src="script.js"></script>
+                <button type="submit">Let's Play</button>
+            </form>
+        </main>
+
+        <script src="./script/index.js"></script>
     </body>
 </html>

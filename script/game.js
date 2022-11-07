@@ -1,3 +1,26 @@
+let difficulty = sessionStorage.getItem('difficulty');
+let difficultyStatus = [
+    {
+        "level" : "easy",
+        "red" : true,
+        "green" : false,
+        "blue" : false
+    },
+    {
+        "level" : "medium",
+        "red" : true,
+        "green" : true,
+        "blue" : false
+    },
+    {
+        "level" : "hard",
+        "red" : true,
+        "green" : true,
+        "blue" : true
+    }
+]
+
+
 let inputRed = document.querySelector('input#red');
 let labelRed = document.querySelector('label#red');
 
@@ -35,7 +58,26 @@ function setRandomColor(){
     }
 }
 
+let changeStatus = (colors) => {
+    for (let i of difficultyStatus){
+        if (i.level === difficulty){
+            if (i.blue == false){
+                inputBlue.value = colors.blue;
+                inputBlue.setAttribute('disabled', true);
+                labelBlue.innerHTML = colors.blue;
+            }
+            
+            if (i.green == false){
+                inputGreen.value = colors.green;
+                inputGreen.setAttribute('disabled', true);
+                labelGreen.innerHTML = colors.green;
+            }
+        }
+    }
+}
+
 let colors = setRandomColor();
+changeStatus(colors);
 
 function checkColors(colors){
     return (
@@ -57,6 +99,7 @@ function slider(event){
     sliderLabel.innerHTML = slider.value;
 
     if (checkColors(colors)){
-        setRandomColor();
+        colors = setRandomColor();
+        changeStatus(colors);
     }
 }

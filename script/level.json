@@ -1,0 +1,20 @@
+[
+    {
+        "level" : "easy",
+        "red" : "true",
+        "green" : "false",
+        "blue" : "false"
+    },
+    {
+        "level" : "medium",
+        "red" : "true",
+        "green" : "true",
+        "blue" : "false"
+    },
+    {
+        "level" : "hard",
+        "red" : "true",
+        "green" : "true",
+        "blue" : "true"
+    }
+]
