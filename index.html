@@ -10,24 +10,19 @@
     </head>
     
     <body>
-        <main class="main-box">
-            <div class="home-box">
-                <h1 id="title-box">MATCH THE COLOR GAME</h1>
-                <button class="btn-box" onclick="startGame()">Start</button>
-            </div>
+        <h3>Score : <span id="score"></span></h3>
 
-            <form class="form-box" onsubmit="sendData(event)">
-                <h1><label for="difficulty">Set difficulty :</label></h1>
+        <div class="color-box"></div>
+        <div class="input-box"></div>
 
-                <select name="difficulty" id="difficulty">
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                </select>
+        <input type="range" class="range" id="range"
+        name="range" max="255" min="0" value="0" oninput="inputt()">
+        <label id="number" for="range"></label>
 
-                <button type="submit">Let's Play</button>
-            </form>
-        </main>
+        <div class="btn-box">
+            <button class="add-clickBtn" onclick="plus()">+</button>
+            <button class="minus-clickBtn" onclick="minus()">-</button>
+        </div>
 
         <script src="./script/index.js"></script>
     </body>

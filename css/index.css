@@ -1,34 +1,48 @@
 body{
+    font-family: sans-serif;
+
     margin: 0;
     padding: 0;
-}
 
-.main-box{
     width: 100vw;
     height: 100vh;
 
     display: flex;
-    align-content: center;
+    align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
-.home-box{
-    display: grid;
-    gap: 2rem;
-    grid-template-rows: 10vh 7vh 15vh;
+.color-box, .input-box{
+    width: 10rem;
+    height: 5rem;
 }
 
-.form-box{
-    margin-top: -3.6rem;
+
+.range{
+    margin: 1rem 0;
+
+    width: 2rem;
+    height: 15rem;
+    -webkit-appearance: slider-vertical;
+}
+
+.btn-box{
+    margin: 1rem 0;
 
     width: 30vw;
-    height: 35vh;
+    height: auto;
 
-    display: none;
-    pointer-events: none;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
 
-    gap: 2rem;
-    grid-template-rows: 8vh 8vh 10vh;
+[class$="clickBtn"]{
+    width: 3rem;
+    height: 3rem;
+
+    font-size: 27px;
+    background: orange;
+
+    cursor: pointer;
 }
