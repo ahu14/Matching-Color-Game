@@ -10,7 +10,14 @@
     </head>
     
     <body>
+        <div class="notif-bar">
+            <h2>WOW MEMBAGONGKANN</h2>
+            <h3>Score : <span id="score"></span></h3>
+            <button class="notif-btn" onclick="refresh()">Play Again</button>
+        </div>
+
         <h3>Score : <span id="score"></span></h3>
+        <h3>Time : <span id="time"></span></h3>
 
         <div class="color-box"></div>
         <div class="input-box"></div>
@@ -20,8 +27,8 @@
         <label id="number" for="range"></label>
 
         <div class="btn-box">
-            <button class="add-clickBtn" onclick="plus()">+</button>
-            <button class="minus-clickBtn" onclick="minus()">-</button>
+            <button class="add-clickBtn">+</button>
+            <button class="minus-clickBtn">-</button>
         </div>
 
         <script src="./script/index.js"></script>

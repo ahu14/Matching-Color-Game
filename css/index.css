@@ -11,13 +11,52 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    background: #333;
+    color: #fefefe;
 }
+
+
+
+.notif-bar{
+    position: absolute;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    pointer-events: none;
+
+    width: 400px;
+    height: 250px;
+    background: #bbb;
+    z-index: 100;
+}
+
+
+
+.notif-btn{
+    padding: 10px 12px;
+    font-size: 15px;
+
+    border: 2px solid #333;
+    border-radius: 4px;
+    
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.notif-btn:hover{
+    background: #333;
+    color: #fefefe;
+}
+
+
 
 .color-box, .input-box{
     width: 10rem;
     height: 5rem;
 }
-
 
 .range{
     margin: 1rem 0;
