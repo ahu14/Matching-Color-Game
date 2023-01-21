@@ -6,31 +6,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Document</title>
-        <link rel="stylesheet" href="./css/index.css">
+        <link rel="stylesheet" href="css/index.css">
     </head>
-    
+
     <body>
-        <div class="notif-bar">
-            <h2>WOW MEMBAGONGKANN</h2>
-            <h3>Score : <span id="score"></span></h3>
-            <button class="notif-btn" onclick="refresh()">Play Again</button>
+        <div class="box">
+            <div class="box-instruction">
+                <h2><span id="text-blue">orange</span> <span id="text-orange">red</span>❎</h2>
+                <h2><span id="text-orange">orange</span> <span id="text-red">red</span>✅</h2>
+                <h2>if ✅ click the button if ❎ don't click it</h2>
+            </div>
+
+            <div class="box-play">
+                <h2>Score : <span id="score"></span></h2>
+                <h1 id="display-text"></h1>
+                <div class="button"></div>
+            </div>
+
+            <div class="game-over">
+                <h1>Game Over</h1>
+                <button class="btn-game-over">Play Again</button>
+            </div>
         </div>
 
-        <h3>Score : <span id="score"></span></h3>
-        <h3>Time : <span id="time"></span></h3>
-
-        <div class="color-box"></div>
-        <div class="input-box"></div>
-
-        <input type="range" class="range" id="range"
-        name="range" max="255" min="0" value="0" oninput="inputt()">
-        <label id="number" for="range"></label>
-
-        <div class="btn-box">
-            <button class="add-clickBtn">+</button>
-            <button class="minus-clickBtn">-</button>
-        </div>
-
-        <script src="./script/index.js"></script>
+        <script src="script/index.js"></script>
     </body>
 </html>

@@ -1,134 +1,128 @@
-let colorBox = document.querySelector('.color-box');
-let randomValue = () => Math.floor(Math.random() * 255);
-
-
-
-function randomColor(){
-    let red = randomValue();
-    let green = randomValue();
-    let blue = randomValue();
-
-    colorBox.style.background = `rgb(${red}, ${green}, ${blue})`;
-    
-    return {
-        'red' : red,
-        'green' : green,
-        'blue' : blue
-    }
+let btn = document.querySelector('.button');
+let clickInfo = {
+    numClick : 1,
+    clicked : false
 }
-let getColor = randomColor();
-getColor;
 
+let editClicked = () => {
+    btn.animate([
+        { 'height' : '40px'}
+    ], { 
+        duration : 75,
+        iterations : 1
+    });
 
-
-let score = 0;
-let scoreHTML = document.querySelectorAll('#score');
-let range = document.querySelector('.range');
-let number = document.querySelector('#number');
-let inputBox = document.querySelector('.input-box');
-
-inputBox.style.background = `rgb(${range.value}, 
-    ${getColor.green}, ${getColor.blue})`;
-number.innerHTML = range.value;
-
-let showScore = () => {
-    for (let i of scoreHTML){
-        i.innerHTML = score;
-    }
-}
-showScore();
-
-
-
-function inputt(){
-    if (getColor.red == range.value){
-        setTimeout(() => {
-            getColor = randomColor();
-
-            score++;
-            showScore();
-        }, 200);
+    if (clickInfo.numClick > 0){
+        !clickInfo.clicked ? 
+            clickInfo.clicked = true : 
+            clickInfo.clicked = false;
     }
 
-    number.innerHTML = range.value;
-    inputBox.style.background = `rgb(${range.value}, 
-        ${getColor.green}, ${getColor.blue})`;
+    clickInfo.numClick -= 1;
 }
 
-let plus = () => {
-    range.value = parseInt(range.value) + 1;
-    inputt();
+btn.addEventListener('click', editClicked);
+
+
+
+let colorList = ['orange', 'pink', 'blue', 'red', 'green'];
+
+let getRandomColor = () => {
+    return colorList[Math.floor(Math.random() * colorList.length)];
 }
 
-let minus = () => {
-    range.value = parseInt(range.value) - 1;
-    inputt();
-}
-
-
-
-let btnArray = document.querySelectorAll('[class$="-clickBtn"]');
-let functionArray = [plus, minus];
-let timeStamp;
-
-let rememberTime = (i) => {
-    timeStamp = setInterval(() => {
-        let time = timeHtml.innerHTML;
-        time >= 0 ? functionArray[i]() : deleteTime();
-    }, 70);
-}
-
-let deleteTime = () => {
-    return clearInterval(timeStamp);
+let colorData = {
+    text : '',
+    color : '',
+    click : false
 }
 
 
+let startGame = () => {
+    let displayText = document.querySelector('#display-text');
+    displayText.innerHTML = getRandomColor();
+    colorData.text = displayText.innerHTML;
 
-let notifBar = document.querySelector('.notif-bar');
-let timeHtml = document.querySelector('#time');
-let time = 60;
-let frame;
+    displayText.style.color = getRandomColor();
+    colorData.color = displayText.style.color;
+
+    if (colorData.text == colorData.color){
+        colorData.click = true;
+    }
+
+    else{
+        colorData.click = false;
+    }
+}
 
 let refresh = () => {
-    console.log('clicked');
-    window.location.reload();
+    clickInfo.clicked = false;
+    startTime = undefined;
+    clickInfo.numClick = 1;
 }
 
 
-let timeCounter = () => {
-    if (time <= 0){
-        plus = () => {}
-        minus = () => {}
-        range.oninput = () => {}
-        range.disabled = "true";
+let gameOver = document.querySelector('.game-over');
+let btnGameOver = document.querySelector('.btn-game-over');
+let lose = (time, btn, box) => {
+    if (lastTime == undefined){
+        lastTime = time - startTime;
+    };
 
-        for (let i = 0; i < 2; i++){
-            btnArray[i].onmousedown = () => deleteTime();
-            btnArray[i].onmouseup = () => {};
-            btnArray[i].onmousemove = () => {};
+    if (time - startTime - lastTime > 400 && time - startTime - lastTime < 420){
+        for (let i of box.children){
+            i.style.display = "none";
         }
 
-        time = 0;
-        notifBar.style.display = "flex";
-        notifBar.style.pointerEvents = "auto";
-        showScore();
-        cancelAnimationFrame(timeCounter);
+        gameOver.style.display = 'flex';
+        btnGameOver.onclick = () => window.location.reload();
+    }
+ }
+
+
+
+let score = document.querySelector('#score');
+let box = document.querySelector('.box');
+let scoreNum = 0;
+
+let startTime;
+let lastTime;
+function play(time){
+    if (startTime == undefined){
+        startTime = time;
+        score.innerHTML = scoreNum;
+        startGame();
     }
 
-    timeHtml.innerHTML = time;
-    frame = requestAnimationFrame(timeCounter);
+    if (time - startTime > 4000){
+        if (clickInfo.clicked == colorData.click){
+            scoreNum += 1;
+            score.innerHTML = scoreNum;
+            refresh();
+        }
 
-    if (frame == 60){
-        for (let i = 0; i < 2; i++){
-            btnArray[i].onmousedown = () => rememberTime(i);
-            btnArray[i].onmouseup = () => deleteTime();
-            btnArray[i].onmousemove = () => deleteTime();
+        else{
+            btn.removeEventListener('click', editClicked);
+            lose(time, btn, box);
         }
     }
 
-    else if (frame % 60 == 1){
-        time--;
+    else{
+        if (clickInfo.numClick < 1){
+            if (clickInfo.clicked !== colorData.click){
+                btn.removeEventListener('click', editClicked);
+                lose(time, btn, box);
+            }
+        }
+
+        if (clickInfo.clicked && colorData.click){
+            scoreNum += 1;
+            score.innerHTML = scoreNum;
+            refresh();
+        }
     }
+
+    requestAnimationFrame(play);
 }
 
-requestAnimationFrame(timeCounter);
+requestAnimationFrame(play);
