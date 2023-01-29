@@ -1,3 +1,13 @@
+@font-face {
+    font-family: InterBold;
+    src: url('../assets/Inter/Inter-Bold.ttf');
+}
+
+@font-face {
+    font-family: InterMedium;
+    src: url('../assets/Inter/Inter-Medium.ttf');
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -15,20 +25,46 @@ body{
     height: 100vh;
 
     display: flex;
-    flex-direction: column;
-
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+
+    background: #e3e1c8;
 }
+
+[class^="btn-"]{
+    padding: 12px 10px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 16px;
+    font-family: InterMedium;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+[class^="btn-"]:hover{
+    color: #fefefe;
+    background: #000;
+}
+
+[id$="-text"]{
+    font-family: InterBold;
+}
+
 
 .box-instruction{
     width: inherit;
-    height: 40vh;
+    height: 50vh;
 
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+}
+
+.btn-box-instruction{
+    margin: 2.5vh 0;
 }
 
 #text-red{
@@ -43,46 +79,14 @@ body{
     color: blue;
 }
 
+
 .box-play{
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
 
     width: 100vw;
-}
-
-.game-over{
-    display: none;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-
-    width: 100vw;
-    height: 100vh;
-}
-
-.btn-game-over{
-    padding: 10px 12px;
-    border: 2px solid #000;
-    border-radius: 4px;
-    background: #fff;
-    font-size: 16px;
-    transition: 0.2s ease;
-    cursor: pointer;
-}
-
-.btn-game-over:hover{
-    color: #fefefe;
-    background: #000;
-}
-
-
-
-.color-box{
-    width: 40vw;
-    height: 10vh;
-    border: 2px solid #000;
 }
 
 .button{
@@ -119,19 +123,12 @@ body{
 }
 
 
-.refresh-btn{
-    padding: 10px 12px;
-    font-size: 16px;
+.box-game-over{
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 
-    border-radius: 4px;
-    border: 2px solid #000;
-    background: transparent;
-
-    transition: 0.2s ease;
-    cursor: pointer;
-}
-
-.refresh-btn:hover{
-    color: #fefefe;
-    background: #000;
+    width: 100vw;
+    height: 100vh;
 }

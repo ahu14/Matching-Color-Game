@@ -5,30 +5,32 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Document</title>
+        <title>Match The Color Game</title>
         <link rel="stylesheet" href="css/index.css">
     </head>
 
     <body>
         <div class="box">
             <div class="box-instruction">
-                <h2><span id="text-blue">orange</span> <span id="text-orange">red</span>❎</h2>
-                <h2><span id="text-orange">orange</span> <span id="text-red">red</span>✅</h2>
-                <h2>if ✅ click the button if ❎ don't click it</h2>
+                <h2 id="instruction-text"><span id="text-blue">orange</span> <span id="text-orange">red</span>❎</h2>
+                <h2 id="instruction-text"><span id="text-orange">orange</span> <span id="text-red">red</span>✅</h2>
+                <h2 id="instruction-text">if ✅ click the button</h2> 
+                <h2 id="instruction-text">if ❎ don't click it</h2>
+                <button class="btn-box-instruction">OK understand</button>
             </div>
 
             <div class="box-play">
-                <h2>Score : <span id="score"></span></h2>
+                <h2 id="play-text">Score : <span id="score"></span></h2>
                 <h1 id="display-text"></h1>
                 <div class="button"></div>
             </div>
 
-            <div class="game-over">
-                <h1>Game Over</h1>
+            <div class="box-game-over">
+                <h1 id="game-over-text">Game Over</h1>
                 <button class="btn-game-over">Play Again</button>
             </div>
         </div>
 
-        <script src="script/index.js"></script>
+        <script src="script/index.js" type="module"></script>
     </body>
 </html>
