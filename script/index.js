@@ -1,139 +1,61 @@
+import events, {colorData, clickInfo, gameData} from "./gameData.js";
 import {pages, editStatus, updateStatus} from "./pages.js";
 updateStatus();
 
+
 let btnInstruction = document.querySelector('.btn-box-instruction');
 btnInstruction.onclick = function(){
-    editStatus('.box-play');
-
     let btn = document.querySelector('.button');
-    let clickInfo = {
-        numClick : 1,
-        clicked : false
-    }
-
-    let editClicked = () => {
-        btn.animate([
-            { 'height' : '40px'}
-        ], { 
-            duration : 75,
-            iterations : 1
-        });
-
-        if (clickInfo.numClick > 0){
-            !clickInfo.clicked ? 
-                clickInfo.clicked = true : 
-                clickInfo.clicked = false;
-        }
-
-        clickInfo.numClick -= 1;
-    }
-
-    btn.addEventListener('click', editClicked);
-
-
-
-    let colorList = ['orange', 'pink', 'blue', 'red', 'green'];
-
-    let getRandomColor = () => {
-        return colorList[Math.floor(Math.random() * colorList.length)];
-    }
-
-    let colorData = {
-        text : '',
-        color : '',
-        click : false
-    }
-
-
-    let startGame = () => {
-        let displayText = document.querySelector('#display-text');
-        displayText.innerHTML = getRandomColor();
-        colorData.text = displayText.innerHTML;
-
-        displayText.style.color = getRandomColor();
-        colorData.color = displayText.style.color;
-
-        colorData.text == colorData.color ? 
-            colorData.click = true : 
-            colorData.click = false;
-    }
-
-    let refresh = () => {
-        clickInfo.clicked = false;
-        clickInfo.numClick = 1;
-        startTime = undefined;
-    }
-
-    let addScore = () => {
-        scoreNum += 1;
-        score.innerHTML = scoreNum;
-    }
-
-
-    let btnGameOver = document.querySelector('.btn-game-over');
-    let lose = (btn, box, totalTime) => {
-        setTimeout(() => {
-            editStatus('.box-game-over');
-        }, 150);
-
-        btnGameOver.onclick = () => {
-            scoreNum = 0;
-            score.innerHTML = scoreNum;
-            refresh();
-
-            pause = false;
-            totalTime = 4000;
-            editStatus('.box-play');
-            play();
-        };
-    }
-
-
-
-    let score = document.querySelector('#score');
+    let score = document.querySelectorAll('#score');
     let box = document.querySelector('.box');
-    let scoreNum = 0;
+    let btnGameOver = document.querySelector('.btn-game-over');
 
-    let startTime;
-    let totalTime = 4000;
-    const minusTime = 0.3;
-
-    let pause = false;
+    let data = gameData;
     function play(time){
-        if (startTime == undefined){
-            startTime = time;
-            score.innerHTML = scoreNum;
-            startGame();
+        if (data.startTime == undefined){
+            data.startTime = time;
+            score[0].innerHTML = data.scoreNum;
+
+            editStatus('.box-play');
+            events.emitEvent('start');
+            btn.addEventListener('click', () => { 
+                events.emitEvent('clicked');
+            });
         }
 
-        if (time - startTime > totalTime){
+        if (time - data.startTime > data.totalTime){
             if (clickInfo.clicked == colorData.click){
-                addScore();
-                refresh();
-                totalTime > 1500 ? totalTime -= minusTime : totalTime;
+                events.emitEvent('addScore', {'score' : score[0]});
+                events.emitEvent('refresh');
+                events.emitEvent('minusTime');
             }
 
             else{
-                pause = true;
+                data.pause = true;
             }
         }
 
         else{
             if (clickInfo.numClick < 1){
                 if (clickInfo.clicked !== colorData.click){
-                    pause = true;
+                    data.pause = true;    
                 }
             }
 
             if (clickInfo.clicked && colorData.click){
-                addScore();
-                refresh();
-                totalTime > 1500 ? totalTime -= minusTime : totalTime;
+                events.emitEvent('addScore', {'score' : score[0]});
+                events.emitEvent('refresh');
+                events.emitEvent('minusTime');
             }
         }
 
-        if (pause) {
-            lose(btn, box, totalTime);
+        if (data.pause) {
+            events.emitEvent('lose', {
+                'btn-game-over' : btnGameOver,
+                'box' : box,
+                'score' : score[1],
+                'play' : play
+            });
             return;
         }
 
