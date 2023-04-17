@@ -10,6 +10,10 @@ btnInstruction[0].onclick = function(){
     let box = document.querySelector('.box');
     let btnGameOver = document.querySelector('.btn-game-over');
 
+    btn.addEventListener('click', () => { 
+        events.emitEvent('clicked');
+    });
+
     let data = gameData;
     function play(time){
         if (data.startTime == undefined){
@@ -18,40 +22,31 @@ btnInstruction[0].onclick = function(){
 
             editStatus('.box-play');
             events.emitEvent('start');
-            btn.addEventListener('click', () => { 
-                events.emitEvent('clicked');
-            });
         }
 
         if (time - data.startTime > data.totalTime){
             if (clickInfo.clicked == colorData.click){
                 events.emitEvent('addScore', {'score' : score[0]});
-                events.emitEvent('refresh');
                 events.emitEvent('minusTime');
+                events.emitEvent('refresh');
             }
 
             else{
-                setTimeout(() => {
-                    data.pause = true;
-                    events.emitEvent('resetAnimation');
-                }, 700);
+                setTimeout(() => data.pause = true, 700);
             }
         }
 
         else{
             if (clickInfo.numClick < 1){
                 if (clickInfo.clicked !== colorData.click){
-                    setTimeout(() => {
-                        data.pause = true;
-                        events.emitEvent('resetAnimation');
-                    }, 700);
+                    setTimeout(() => data.pause = true, 700);
                 }
             }
 
             if (clickInfo.clicked && colorData.click){
                 events.emitEvent('addScore', {'score' : score[0]});
-                events.emitEvent('refresh');
                 events.emitEvent('minusTime');
+                events.emitEvent('refresh');
             }
         }
 

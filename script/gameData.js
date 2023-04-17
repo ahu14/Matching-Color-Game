@@ -43,22 +43,13 @@ events.addEvent('start', () => {
 })
 
 
-events.addEvent('resetAnimation', () => {
-    let btn_bottom = document.querySelector('.button-bottom');
-    let btn_top = document.querySelector('.button-top');
-
-    btn_bottom.style.animation = "";
-    btn_top.style.animation = "upDown 0.7s infinite";
-})
-
-
 events.addEvent('clicked', () => {
     let btn_bottom = document.querySelector('.button-bottom');
     let btn_top = document.querySelector('.button-top');
 
     btn_bottom.style.animation = "borderChange 0.7s ease";
     btn_top.style.animation = "clicked 0.7s ease";
-
+    
     setTimeout(() => events.emitEvent('resetAnimation'), 700);
 
     if (clickInfo.numClick > 0){
@@ -68,6 +59,14 @@ events.addEvent('clicked', () => {
     }
 
     clickInfo.numClick -= 1;
+})
+
+events.addEvent('resetAnimation', () => {
+    let btn_bottom = document.querySelector('.button-bottom');
+    let btn_top = document.querySelector('.button-top');
+
+    btn_bottom.style.animation = "";
+    btn_top.style.animation = "upDown 0.7s infinite";
 })
 
 
@@ -111,6 +110,7 @@ events.addEvent('lose', (...data) => {
 
             editStatus('.box-play');
             events.emitEvent('refresh');
+            events.emitEvent('resetAnimation');
             dataa.play();
         };
     }
