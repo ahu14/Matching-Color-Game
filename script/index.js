@@ -3,8 +3,8 @@ import {pages, editStatus, updateStatus} from "./pages.js";
 updateStatus();
 
 
-let btnInstruction = document.querySelector('.btn-box-instruction');
-btnInstruction.onclick = function(){
+let btnInstruction = document.querySelectorAll('.btn-box-instruction');
+btnInstruction[0].onclick = function(){
     let btn = document.querySelector('.button');
     let score = document.querySelectorAll('#score');
     let box = document.querySelector('.box');
@@ -31,14 +31,20 @@ btnInstruction.onclick = function(){
             }
 
             else{
-                data.pause = true;
+                setTimeout(() => {
+                    data.pause = true;
+                    events.emitEvent('resetAnimation');
+                }, 700);
             }
         }
 
         else{
             if (clickInfo.numClick < 1){
                 if (clickInfo.clicked !== colorData.click){
-                    data.pause = true;    
+                    setTimeout(() => {
+                        data.pause = true;
+                        events.emitEvent('resetAnimation');
+                    }, 700);
                 }
             }
 
@@ -63,4 +69,8 @@ btnInstruction.onclick = function(){
     }
 
     play();
+}
+
+btnInstruction[1].onclick = () => {
+    events.emitEvent('btn-run');
 }

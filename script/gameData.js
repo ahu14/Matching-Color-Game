@@ -43,11 +43,23 @@ events.addEvent('start', () => {
 })
 
 
+events.addEvent('resetAnimation', () => {
+    let btn_bottom = document.querySelector('.button-bottom');
+    let btn_top = document.querySelector('.button-top');
+
+    btn_bottom.style.animation = "";
+    btn_top.style.animation = "upDown 0.7s infinite";
+})
+
+
 events.addEvent('clicked', () => {
-    event.target.animate([{ 'height' : '40px'}], { 
-        duration : 75,
-        iterations : 1
-    });
+    let btn_bottom = document.querySelector('.button-bottom');
+    let btn_top = document.querySelector('.button-top');
+
+    btn_bottom.style.animation = "borderChange 0.7s ease";
+    btn_top.style.animation = "clicked 0.7s ease";
+
+    setTimeout(() => events.emitEvent('resetAnimation'), 700);
 
     if (clickInfo.numClick > 0){
         !clickInfo.clicked ? 
@@ -104,6 +116,16 @@ events.addEvent('lose', (...data) => {
     }
 
     lose(dataa['btn-game-over'], dataa.box);
+})
+
+
+events.addEvent('btn-run', () => {
+    let btnInstruction = document.querySelectorAll('.btn-box-instruction')[1];
+    let rand = (num) => Math.floor(Math.random() * (num - 100));
+
+    btnInstruction.style.top = rand(window.innerHeight) + 'px';
+    btnInstruction.style.left = rand(window.innerWidth) + 'px';
+    btnInstruction.style.transition = "0.3s ease";
 })
 
 export default events;

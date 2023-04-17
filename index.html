@@ -7,22 +7,34 @@
 
         <title>Match The Color Game</title>
         <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/box-game-over.css">
+        <link rel="stylesheet" href="css/box-instruction.css">
+        <link rel="stylesheet" href="css/box-play.css">
     </head>
 
     <body>
         <div class="box">
             <div class="box-instruction">
-                <h2 id="instruction-text"><span id="text-blue">orange</span> <span id="text-orange">red</span>❎</h2>
-                <h2 id="instruction-text"><span id="text-orange">orange</span> <span id="text-red">red</span>✅</h2>
-                <h2 id="instruction-text">if ✅ click the button</h2> 
-                <h2 id="instruction-text">if ❎ don't click it</h2>
-                <button class="btn-box-instruction">OK understand</button>
+                <h2 id="instruction-text">Match The Color Game</h2>
+                <p id="instruction-text">The game consist of one button and a word.</p>
+                <p id="instruction-text">If the word color and the written word is the same, click the button.</p>
+                <p id="instruction-text">If it doesn't, don't click it. The word will change itself in some seconds.</p>
+                <p id="instruction-text">The button will always try to make you click it.</p>
+
+                <p id="instruction-text">Will you play it ?</p>
+                <div class="list-btn-box-instruction">
+                    <button class="btn-box-instruction">Yes</button>
+                    <button class="btn-box-instruction">No</button>
+                </div>
             </div>
 
             <div class="box-play">
                 <h2 id="play-text">Score : <span id="score"></span></h2>
                 <h1 id="display-text"></h1>
-                <div class="button"></div>
+                <div class="button">
+                    <div class="button-bottom"></div>
+                    <div class="button-top"></div>
+                </div>
             </div>
 
             <div class="box-game-over">

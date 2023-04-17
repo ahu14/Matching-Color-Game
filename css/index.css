@@ -11,13 +11,7 @@
 body{
     margin: 0;
     padding: 0;
-
-    width: 100%;
-    height: 100vh;
-
-    display: grid;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
 }
 
 .box{
@@ -26,7 +20,7 @@ body{
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
 
     background: #e3e1c8;
@@ -52,98 +46,9 @@ body{
     font-family: InterBold;
 }
 
-
-.box-instruction{
-    width: inherit;
-    height: 50vh;
-
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.btn-box-instruction{
-    margin: 2.5vh 0;
-}
-
-#text-red{
-    color: red;
-}
-
-#text-orange{
-    color: orange;
-}
-
-#text-blue{
-    color: blue;
-}
-
-
-.box-play{
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-
-    width: 100vw;
-}
-
-.button{
-    position: relative;
-    top: 4vh;
-
-    width: 100px;
-    height: 60px;
-    background: #ee0000;
-
-    border-radius: 0 0 50% 50%;
-    animation: 1s upDown infinite, 60s changeForegroundColor infinite;
-    transition: 0.2s ease;
-    cursor: pointer;
-}
-
-.button:after{
-    content: '';
-
-    position: absolute;
-    top: -4vh;
-
-    width: 100px;
-    height: 60px;
-    background: #ff0000;
-    border-radius: 50%;
-    z-index: 100;
-    animation: 60s changeColor infinite;
-}
-
-@keyframes upDown {
-    0% { height: 60px; }
-    50% { height: 55px; }
-    100%{ height: 60px; }
-}
-
-@keyframes changeColor {
-    0% { background: #ff0000; }
-    25% { background: #ffa500; }
-    50% { background: #dddd00; }
-    75% { background: #00c000; }
-}
-
-@keyframes changeForegroundColor {
-    0% { background: #ee0000; }
-    25% { background: #eea500; }
-    50% { background: #cccc00; }
-    75% { background: #00d000; }
-}
-
-
-.box-game-over{
-    display: none;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-
-    width: 100vw;
-    height: 100vh;
+@media screen and (min-width: 768px) {
+    .box{
+        display: flex;
+        justify-content: center;
+    }   
 }
