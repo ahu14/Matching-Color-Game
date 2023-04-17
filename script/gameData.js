@@ -125,7 +125,6 @@ events.addEvent('btn-run', () => {
 
     btnInstruction.style.top = rand(window.innerHeight) + 'px';
     btnInstruction.style.left = rand(window.innerWidth) + 'px';
-    btnInstruction.style.transition = "0.3s ease";
 })
 
 export default events;
