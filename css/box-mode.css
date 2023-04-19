@@ -1,17 +1,16 @@
-.box-instruction{
+.box-mode{
     width: inherit;
-    height: 70vh;
+    height: 100vh;
 
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    justify-content: center;
 }
 
-.btn-box-instruction{
-    margin: 1vh 0;
-    width: 100px;
-    transition: 0.3s ease;
+.game-mode{
+    display: flex;
+    flex-direction: column;
 }
 
 .selection{
@@ -24,15 +23,14 @@
     border: 2px solid #000;
 }
 
-.list-btn-instruction{
+.list-btn-mode{
     display: flex;
     flex-direction: column;
 }
 
-.btn-box-instruction{
-    position: absolute;
+.btn-mode{
     margin: 1vh 0;
-    width: 100px;
+    width: 150px;
     transition: 0.3s ease;
 }
 

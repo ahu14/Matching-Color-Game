@@ -7,6 +7,7 @@
 
         <title>Match The Color Game</title>
         <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/box-mode.css">
         <link rel="stylesheet" href="css/box-game-over.css">
         <link rel="stylesheet" href="css/box-instruction.css">
         <link rel="stylesheet" href="css/box-play.css">
@@ -15,25 +16,40 @@
     <body>
         <div class="box">
             <div class="box-instruction">
-                <h2 id="instruction-text">Match The Color Game</h2>
-                <p id="instruction-text">The game consist of one button and a word.</p>
+                <p id="instruction-text">This game consist of one button and one word.</p>
                 <p id="instruction-text">If the word color and the written word is the same, click the button.</p>
                 <p id="instruction-text">If it doesn't, don't click it. The word will change itself in some seconds.</p>
                 <p id="instruction-text">The button will always try to make you click it.</p>
+                <p id="instruction-text">You understand ?</p>
 
-                <p id="instruction-text">Will you play it ?</p>
-                <div class="list-btn-box-instruction">
+                <div class="list-btn-instruction">
                     <button class="btn-box-instruction">Yes</button>
                     <button class="btn-box-instruction">No</button>
                 </div>
             </div>
 
+            <div class="box-mode">
+                <form class="game-mode" id="game-mode">
+                    <p id="mode-text">Choose Mode :</p>
+
+                    <select id="mode" class="selection">
+                        <option class="mode-child" id="mode" value="normal">Normal</option>
+                        <option class="mode-child" id="mode" value="crazy">Crazy</option>
+                    </select>
+    
+                    <button class="btn-mode">Start Game</button>
+                </form>
+            </div>
+
             <div class="box-play">
                 <h2 id="play-text">Score : <span id="score"></span></h2>
-                <h1 id="display-text"></h1>
-                <div class="button">
-                    <div class="button-bottom"></div>
-                    <div class="button-top"></div>
+
+                <div class="gameplay">
+                    <h1 id="display-text"></h1>
+                    <div class="button">
+                        <div class="button-bottom"></div>
+                        <div class="button-top"></div>
+                    </div>
                 </div>
             </div>
 

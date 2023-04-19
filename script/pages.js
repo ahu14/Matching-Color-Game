@@ -1,5 +1,6 @@
 export let pages = {
     '.box-instruction' : 'flex',
+    '.box-mode' : 'none',
     '.box-play' : 'none',
     '.box-game-over' : 'none'
 }

@@ -20,12 +20,18 @@ export let gameData = {
     pause : false,
     totalTime : 4000,
     startTime : undefined,
-    minusTime : 30
+    minusTime : 30,
+    mode : '',
+    checkMode : () => {
+        if (gameData.mode == "Crazy"){
+            events.emitEvent('random-move');
+        }
+    }
 }
 
 
 events.addEvent('start', () => {
-    let colorList = ['orange', 'pink', 'blue', 'red', 'green'];
+    let colorList = ['orange', 'pink', 'blue', 'green', 'yellow'];
     let getRandomColor = () => {
         return colorList[Math.floor(Math.random() * colorList.length)];
     }
@@ -40,6 +46,18 @@ events.addEvent('start', () => {
     colorData.text == colorData.color ? 
         colorData.click = true : 
         colorData.click = false;
+})
+
+events.addEvent('random-move', () => {
+    let gameplay = document.querySelector('.gameplay');
+
+    let rand_height = window.innerHeight - 160;
+    let rand_width = window.innerWidth - 110;
+
+    let rand = (num) => Math.floor(Math.random() * num);
+
+    gameplay.style.top = `${rand(rand_height)}px`;
+    gameplay.style.left = `${rand(rand_width)}px`;
 })
 
 

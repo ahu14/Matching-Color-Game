@@ -4,7 +4,29 @@ updateStatus();
 
 
 let btnInstruction = document.querySelectorAll('.btn-box-instruction');
+
+
 btnInstruction[0].onclick = function(){
+    editStatus('.box-mode');
+}
+
+btnInstruction[1].onclick = () => {
+    events.emitEvent('btn-run');
+}
+
+
+let btnMode = document.querySelector('.btn-mode');
+btnMode.onclick = (event) => {
+    event.preventDefault();
+
+    let form = document.forms.namedItem('game-mode');
+    for (let i of form.children.mode){
+        if (i.selected){
+            gameData.mode = i.innerHTML;
+        }
+    }
+
+
     let btn = document.querySelector('.button');
     let score = document.querySelectorAll('#score');
     let box = document.querySelector('.box');
@@ -22,6 +44,7 @@ btnInstruction[0].onclick = function(){
 
             editStatus('.box-play');
             events.emitEvent('start');
+            gameData.checkMode();
         }
 
         if (time - data.startTime > data.totalTime){
@@ -64,8 +87,4 @@ btnInstruction[0].onclick = function(){
     }
 
     play();
-}
-
-btnInstruction[1].onclick = () => {
-    events.emitEvent('btn-run');
 }
